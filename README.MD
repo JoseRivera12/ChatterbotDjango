@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <strong>Chatbot para brindar soporte técnico básico de computadoras.</strong>
+   <strong>Chatbot para brindar soporte técnico básico de computadoras.</strong>
 </div>
 
 <h1 id="install" >Prerrequisitos</h1>
