@@ -4,4 +4,4 @@ export NAME=''
 export USER=''
 export PASSWORD=''
 export EMAIL_HOST_USER=''
-export EMAIL_HOST_PASSWORD=''
+export EMAIL_HOST_PASSWORD=""
