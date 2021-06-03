@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    {% if user.is_authenticated and user.is_admin %}
+    {% if user.is_authenticated %}
         {% if user.is_admin %}
             <header>
                 <div class="navbar-fixed ">
@@ -70,34 +70,33 @@
                     <li><a class="menuItem" href="{% url 'account:logout' %}">CERRAR SESION</a></li>
                 </ul>
             </header>
-        {% else %}
-            <header>
-                <div class="navbar-fixed ">
-                    <nav>
-                        <div class="nav-wrapper">
-                            <a href="{% url 'index' %}" class="brand-logo"><img class="logo hide-on-med-and-down"
-                                    src="{% static 'images/logo.png' %}"><span class="logo hide-on-med-and-up">ORWELL</span>
-                            </a>
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
-                                    class="material-icons navbarIcon">menu</i></a>
-                            <ul class="right hide-on-med-and-down elementsRight">
-                                <li><a class="menuItem" href="{% url 'account:login' %}">INICIAR SESION</a></li>
-                                <li><a class="menuItem" href="{% url 'account:signup' %}">REGISTRO</a></li>
-                                <li><a class="menuItem" href="{% url 'chatear' %}">CHAT CON ORWELL</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-                <ul class="sidenav" id="mobile-demo">
-                    <li><a class="menuItem" href="{% url 'index' %}">INDEX</a></li>
-                    <li><a class="menuItem" href="{% url 'account:login' %}">INICIAR SESION</a></li>
-                    <li><a class="menuItem" href="{% url 'account:signup' %}">REGISTRO</a></li>
-                    <li><a class="menuItem" href="{% url 'chatear' %}">CHAT CON ORWELL</a></li>
-                </ul>
-            </header>
         {% endif %}
+        {% else %}
+        <header>
+            <div class="navbar-fixed ">
+                <nav>
+                    <div class="nav-wrapper">
+                        <a href="{% url 'index' %}" class="brand-logo"><img class="logo hide-on-med-and-down"
+                                src="{% static 'images/logo.png' %}"><span class="logo hide-on-med-and-up">ORWELL</span>
+                        </a>
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
+                                class="material-icons navbarIcon">menu</i></a>
+                        <ul class="right hide-on-med-and-down elementsRight">
+                            <li><a class="menuItem" href="{% url 'account:login' %}">INICIAR SESION</a></li>
+                            <li><a class="menuItem" href="{% url 'account:signup' %}">REGISTRO</a></li>
+                            <li><a class="menuItem" href="{% url 'chatear' %}">CHAT CON ORWELL</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <ul class="sidenav" id="mobile-demo">
+                <li><a class="menuItem" href="{% url 'index' %}">INDEX</a></li>
+                <li><a class="menuItem" href="{% url 'account:login' %}">INICIAR SESION</a></li>
+                <li><a class="menuItem" href="{% url 'account:signup' %}">REGISTRO</a></li>
+                <li><a class="menuItem" href="{% url 'chatear' %}">CHAT CON ORWELL</a></li>
+            </ul>
+        </header>
     {% endif %}
-
     {% block content %}
     {% endblock %}
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -110,20 +109,24 @@
             var elems = document.querySelectorAll('.slider');
             var instances = M.Slider.init(elems, { indicators: false, height: 500 });
         });
+
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
 
         });
+
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.carousel');
             var options = { fullWidth: true, indicators: true }
             var instances = M.Carousel.init(elems, options);
         });
+
         var collapsibles = document.querySelectorAll('.collapsible')
         for (var i = 0; i < collapsibles.length; i++) {
             M.Collapsible.init(collapsibles[i]);
         }
+
         var elems = document.querySelectorAll('.datepicker');
         var instances = M.Datepicker.init(elems, { format: 'mm/dd/yyyy', yearRange: 100 });
     </script>

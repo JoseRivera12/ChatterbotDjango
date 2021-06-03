@@ -2,9 +2,11 @@ from django.conf import settings
 from django.contrib import auth, messages
 from django.contrib.auth import views as django_views
 from django.contrib.auth.decorators import login_required
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import PasswordResetForm 
 from django.shortcuts import render
 

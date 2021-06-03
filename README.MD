@@ -1,95 +1,45 @@
-<div align="center">
-  <h1>ORWELL | Chatbot</h1>
-</div>
+# ORWELL | Chatbot
 
-<div align="center">
-   <strong>Chatbot para brindar soporte técnico básico de computadoras.</strong>
-</div>
+Proyecto Escolar. Chatbot para brindar soporte técnico básico de computadoras.
+El bot se configura a partir de un archivo yml para responder preguntas básicas acerca de problemas comunes de computadoras y en caso de no contar con una respuesta genera una cita de reparación a la que pueden acceder sólo los usuarios administradores o técnicos. Además se guardan todas las conversaciones generadas para determinar casos en los cuales el bot no responda como se espera
 
-<h1 id="install" >Prerrequisitos</h1>
-Antes de ejecutar este proyecto, necesitarás instalar en tu computadora software adicional.
+Stack
 
-## Python 3
-El proyecto requiere de Python 3.6 o superior. Viene preinstalado una versión compatible con la mayoría de los sistemas Linux. Si no es el caso, consulte la documentación de su distribución y las instrucciones para la instalación de Python 3.6 o 3.7. 
+- Django
+- Python
+- MongoDB
+- Chatterbot
+- PostgreSQL
 
-## PostgreSQL
-El proyecto necesita de PostgresSQL en la versión 9.4 o superior. Usa el siguiente link <a href="https://www.postgresql.org/download/">PostgreSQL download page</a> para seguir las instrucciones de instalación.
+Se creó el archivo docker-compose ya que al realizar la instalación existía una incompatibilidad con algunas versiones de las dependencias. además de ser más fácil de instalar.
 
 
-<h1 id="install" >Instalación</h1>
+## Instalación
 
-## Debian / Ubuntu
-Debian 9.0 Stretch o superior, Ubuntu 16.04 Xenial o superior:
+Es necesario instalar previamente docker y docker-compose
 
-```sh
-$ sudo apt-get install build-essential python3-dev python3-pip python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
-```
-#### 1. Clonamos el repositorio:
+I. El primero paso es clonar el repositorio
 
 ```sh
-$ git clone https://github.com/osmarpb97/buro_django
+$ git clone git@github.com:JoseRivera12/ChatterbotDjango.git
 ```
 
-#### 2. Entramos al directorio
-```sh
- cd proyecto_is
-```
-#### 3. Instalar todas las dependencias:
+II. El siguiente paso es levantar los contenedores ejecutando los siguientes pasos
 
-Recomendamos altamente crear un entorno virtual antes de instalar cualquier paquete de Python.<br>
-<b>Puede omitir este paso (no recomendado)</b>
 ```sh
- $ pip3 install virtualenv 
- $ virtualenv nombredelentorno
- $ source nombredelentorno/bin/activate
+$ docker-compose build
+$ docker-compose up
 ```
 
-<b>Fin de creacion del entorno virtual.</b>
+III. Lo siguiente es acceder al contenedor de Django para ejecutar las migraciones de la base de datos y el entrenamiento del bot que se encuentra en el archivo soporte.yml
 
 ```sh
-$ pip3 install -r requirements.txt
+$ docker ps #obtiene los identificadores de los contenedores
+$ docker exec -it <id-container> sh
+$ python manage.py migrate
+$ cd /proyecto_is/
+$ python train.py
 ```
-#### 4. Definir las variables de entorno. 
-Intentamos de proporcionar valores predeterminados para todas las configuraciones. Hemos decidido no proporciona un valor predeterminado para SECRET_KEY ya que tememos que alguien inevitablemente envíe un proyecto con el valor predeterminado que queda en el código. 
+### El proyecto se podría adecuar a otros casos creando otros archivos yml de entrenamiento para el bot o modificando el archivo soporte.yml
 
-Proporcionamos un script llamado variables.sh con el cual facilitamos la creación de las variables para realizar la configuración del proyecto, en dicho script asigne el valor de las variables de acuerdo a su configuración.
-
-Ejemplo:
-```sh
-
-export SECRET_KEY='21jDSsa1221sadas'
-export NAME='DB_NAME'
-export USER='DB_USER'
-export PASSWORD='DB_PASSWORD'
-##Correo para envio de correos
-export EMAIL_HOST_USER='Email'
-export EMAIL_HOST_PASSWORD='Password email'
-
-Finalmente guarda los cambios en el archivo y ejecuta el siguiente comando
-
-```sh
-$ ./variables.sh
-```
-
-## NOTA en caso de un reinicio de tu servidor deberas ejecutar nuevamente el script
-#### 5. Instalar POSTGRES:
-
-```sh
-$ sudo apt-get install postgresql postgresql-contrib libpq-dev
-$ libpq-dev
-```
-#### Crear la base de datos y usuario PostgreSQL :
-
-```sh
-$ sudo -u postgres createuser 'userDB' 
-$ sudo -u postgres createdb 'nameDB'
-$ sudo -u postgres psql
-psql=# alter user 'userBD' with encrypted password '<SETPASSWORD>';
-psql=# grant all privileges on database 'nameDB' to 'userDB' ;
-```
-
-#### 6. Asignar la misma contraseña que se asigno previamente en el paso anterior ##
-```sh
-$ sudo adduser uburo
-$ python3 manage.py migrate
-```
+## Otra forma de entrenar el bot es crear una cuenta de administrador y escribir las preguntas y respuestas en "Entrenar al bot"

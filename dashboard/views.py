@@ -203,7 +203,6 @@ def users(request):
     return render(request, 'dashboard/usuarios.html', context)
 
 class AjaxableResponseMixin:
-
     def form_invalid(self, form):
         if self.request.is_ajax():
             return render(self.request, 'snippet/createCita.html', {'form' : form}, status=505)
@@ -237,8 +236,6 @@ class ReportCreate(AjaxableResponseMixin, CreateView):
             modelo = self.request.POST['modelopc']
             hora = self.request.POST['hora']
             fecha = self.request.POST['fecha']
-            print(idC)
-            print(problema)
             conversa = Conversacion(texto="Entendido, guarde una cita para "+cliente+" con el modelo de computadora "+modelo+" para el dia "+fecha+" a las "+hora+ " con el siguiente diagnostico "+problema,enviadopor=idC,solucionado=True)
             conversa.save()
             return super(ReportCreate, self).form_valid(form)
