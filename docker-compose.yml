@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: chatterbot
+      POSTGRES_USER: chatbotuser
+      POSTGRES_PASSWORD: chatterbotpass
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+  web:  
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db 
+    env_file: 
+      - ./.env
+    command: python /code/manage.py migrate
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+      - mongodb

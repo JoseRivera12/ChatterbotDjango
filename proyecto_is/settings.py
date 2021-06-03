@@ -16,7 +16,6 @@ from chatterbot.response_selection import get_most_frequent_response
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -46,7 +45,7 @@ CHATTERBOT = {
     'name': 'ORWELL',
     'trainer':'chatterbot.trainers.ListTrainer',
     'storage_adapter' : 'chatterbot.storage.MongoDatabaseAdapter',
-    'database_uri' : 'mongodb://localhost:27017/chatbot',
+    'database_uri' : 'mongodb://mongodb:27017/chatbot',
     'logic_adapters':[ 
         {
             "import_path": "chatterbot.logic.BestMatch",
@@ -102,7 +101,7 @@ DATABASES = {
         'NAME': os.environ.get("NAME"),
         'USER': os.environ.get("USER"),
         'PASSWORD': os.environ.get("PASSWORD"),
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
@@ -127,13 +126,9 @@ AUTH_USER_MODEL = 'users_auth.User'
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'es'
-
 TIME_ZONE = 'America/Mexico_City'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 LANGUAGES = (
