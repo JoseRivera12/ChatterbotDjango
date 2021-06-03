@@ -81,7 +81,6 @@ class SignupForm(forms.ModelForm):
             raise forms.ValidationError(
                 "password and confirm_password does not match"
             )
-        
         user_type = self.cleaned_data['user_type']
         if(user_type== "administrador"):
             user.is_admin = True
@@ -91,4 +90,3 @@ class SignupForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-

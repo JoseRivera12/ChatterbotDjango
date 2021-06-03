@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 import datetime
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import user_passes_test
 from users_auth.models import User
 from .models import Conversacion
@@ -13,11 +12,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import views as django_views
 from datetime import date
 from django.contrib.auth.forms import PasswordChangeForm
-from django.views.generic.edit import (
-    CreateView,
-    UpdateView,
-    DeleteView
-)
+from django.views.generic.edit import CreateView
 from .models import Reporte
 from django.http import JsonResponse
 from django.urls import reverse_lazy

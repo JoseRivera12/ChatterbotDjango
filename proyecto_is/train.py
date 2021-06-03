@@ -4,6 +4,7 @@ from chatterbot.response_selection import get_most_frequent_response
 from chatterbot.comparisons import LevenshteinDistance
 from chatterbot import comparisons, response_selection
 from chatterbot.conversation import Statement
+
 chatbot = ChatBot(
     'ORWELL',
     trainer='chatterbot.trainers.ListTrainer',
@@ -31,11 +32,8 @@ chatbot = ChatBot(
 trainer = ChatterBotCorpusTrainer(chatbot)
 trainer.train( './soporte.yml' )
 levenshtein_distance = LevenshteinDistance()
-#synset_distance = SynsetDistance()
-#sentiment_comparison = SentimentComparison()
-#jaccard_similarity = JaccardSimilarity()
 
-disparate=Statement('Te has equivocado')#convertimos una frase en un tipo statement
+disparate=Statement('Te has equivocado') #convertimos una frase en un tipo statement
 entradaDelUsuario="" #variable que contendrá lo que haya escrito el usuario
 
 while entradaDelUsuario!="adios":
@@ -52,5 +50,4 @@ while entradaDelUsuario!="adios":
         entradaDelUsuarioCorreccion = Statement(input())
         chatbot.learn_response(entradaDelUsuarioCorreccion,entradaDelUsuario)
         print("He aprendiendo que cuando digas {} debo responder {}".format(entradaDelUsuario.text,entradaDelUsuarioCorreccion.text))
-    
     print(respuesta)

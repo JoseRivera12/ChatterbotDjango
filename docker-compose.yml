@@ -8,11 +8,15 @@ services:
       POSTGRES_DB: chatterbot
       POSTGRES_USER: chatbotuser
       POSTGRES_PASSWORD: chatterbotpass
+    volumes:
+      - database-data:/var/lib/postgresql/data/
   mongodb:
     image: mongo
     restart: always
     ports:
       - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
   web:  
     build: .
     volumes:
@@ -23,8 +27,11 @@ services:
       - db 
     env_file: 
       - ./.env
-    command: python /code/manage.py migrate
     command: python /code/manage.py runserver 0.0.0.0:8000
     depends_on:
       - db
       - mongodb
+
+volumes:
+  mongodb_data_container:
+  database-data:

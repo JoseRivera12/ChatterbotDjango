@@ -94,7 +94,6 @@
         </div>
     </div>
 </div>
-
 {% csrf_token %}
 <script>
 
@@ -139,16 +138,13 @@
             'text': $input.val(),
             'id': "{{ idC }}"
         }
-
         createRowUser(inputData.text);
-
         var $submit = $.ajax({
             type: 'POST',
             url: chatterbotUrl,
             data: JSON.stringify(inputData),
             contentType: 'application/json'
         });
-
         $submit.done(function (statement) {
             if (statement.text == "Cita de reparacion") {
                 $input.prop("disabled", true);
@@ -214,6 +210,7 @@
             submitInput();
         }
     });
+    
 </script>
 <script>
     function dictarPregunta() {

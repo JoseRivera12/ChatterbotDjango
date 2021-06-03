@@ -2,19 +2,13 @@ from django.conf import settings
 from django.contrib import auth, messages
 from django.contrib.auth import views as django_views
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.template.response import TemplateResponse
-from django.urls import reverse, reverse_lazy
-from django.utils.translation import pgettext, ugettext_lazy as _
-from django.views.decorators.http import require_POST
+from django.urls import reverse_lazy
 from django.contrib.auth.forms import PasswordResetForm 
 from django.shortcuts import render
-from django.core.mail import send_mail
 
-from .forms import (
-    ChangePasswordForm, LoginForm, SignupForm,
-    logout_on_password_change)
+from .forms import (LoginForm, SignupForm)
 
 def login(request):
     if request.user.is_authenticated:
@@ -71,11 +65,11 @@ class PasswordResetConfirm(django_views.PasswordResetConfirmView):
     token = None
     uidb64 = None
 
-
 def password_reset_confirm(request, uidb64=None, token=None):
     kwargs = {
         'template_name': 'account/password_reset_from_key.html',
         'success_url': reverse_lazy('account:reset-password-complete'),
         'token': token,
-        'uidb64': uidb64}
+        'uidb64': uidb64
+    }
     return PasswordResetConfirm.as_view(**kwargs)(request, **kwargs)

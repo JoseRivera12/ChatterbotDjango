@@ -18,8 +18,7 @@ from chatterbot.response_selection import get_most_frequent_response
 from datetime import datetime
 from chatterbot.trainers import ListTrainer
 from django.core.mail import send_mail, BadHeaderError
-from .forms import ContactForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from users_auth.forms import ReporteForm
 
 levenshtein_distance = LevenshteinDistance()
@@ -100,20 +99,4 @@ def chatear(request):
     letters = string.ascii_lowercase
     identificador = ''.join(random.choice(letters) for i in range(12))
     form = ReporteForm
-    return render(request, 'chatbot/chatbot.html', { 'idC':identificador, 'form':form })
-
-def contactanos(request):
-    if request.method == 'GET':
-        form = ContactForm()
-    else:
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            from_email = form.cleaned_data['from_email']
-            message = "Correo: "+from_email+" Mensaje: "+form.cleaned_data['message']
-            try:
-                send_mail(subject, message, from_email, ['chatbotorwell@gmail.com'])
-            except BadHeaderError:
-                return HttpResponse('Ocurrio un error.')
-            return render(request, 'chatbot/contactanos.html', {'mensaje': 'El correo se envio correctamente','form': form})
-    return render(request, 'chatbot/contactanos.html', {'form': form})    
+    return render(request, 'chatbot/chatbot.html', {'idC':identificador, 'form':form})

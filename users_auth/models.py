@@ -3,7 +3,6 @@ from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin)
 from django.utils import timezone
 from django.utils.translation import pgettext_lazy
-from django.contrib.auth.hashers import make_password
 from uuid import uuid4
 
 class UserManager(BaseUserManager):
@@ -53,5 +52,3 @@ class User(PermissionsMixin, AbstractBaseUser):
                 'manage_staff', pgettext_lazy(
                     'Permission description', 'Manage staff.')),
             )
-        
-
