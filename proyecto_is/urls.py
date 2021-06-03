@@ -9,8 +9,6 @@ from dashboard.views import ReportCreate
 urlpatterns = [
     path('', views.index, name='index'),
     path('chatbot/', views.chatear, name='chatear'),
-    path('equipo/', views.equipo, name='equipo'),
-    path('acercaDe/', views.acerca, name='acerca'),
     path('contactanos/', views.contactanos, name='contactanos'),
     path('createCita', ReportCreate.as_view(), name='createCita'),
     path('account/',include((account_urls, 'account'), namespace='account')),    

@@ -1,6 +1,5 @@
 {% load static %}
 <html>
-
 <head>
     <title>ORWELL</title>
     {% load staticfiles %}
@@ -71,7 +70,6 @@
             <li><a class="menuItem" href="{% url 'dashboard:conversaciones' %}">CONVERSACIONES</a></li>
             <li><a class="menuItem" href="{% url 'account:logout' %}">CERRAR SESION</a></li>
         </ul>
-        <!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
     </header>
     {% else %}
     <header>
@@ -85,8 +83,6 @@
                             class="material-icons navbarIcon">menu</i></a>
                     <ul class="right hide-on-med-and-down elementsRight">
                         <li><a class="menuItem" href="{% url 'chatear' %}">CHAT CON ORWELL</a></li>
-                        <li><a class="menuItem" href="{% url 'equipo' %}">EQUIPO</a></li>
-                        <li><a class="menuItem" href="{% url 'contactanos' %}">CONTACTANOS</a></li>
                     </ul>
                 </div>
             </nav>
@@ -94,8 +90,6 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a class="menuItem" href="{% url 'index' %}">Inicio</a></li>
             <li><a class="menuItem" href="{% url 'chatear' %}">CHAT CON ORWELL</a></li>
-            <li><a class="menuItem" href="{% url 'equipo' %}">EQUIPO</a></li>
-            <li><a class="menuItem" href="{% url 'contactanos' %}">CONTACTANOS</a></li>
         </ul>
     </header>
     {% endif %}

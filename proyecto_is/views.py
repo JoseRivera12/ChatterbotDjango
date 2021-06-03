@@ -102,12 +102,6 @@ def chatear(request):
     form = ReporteForm
     return render(request, 'chatbot/chatbot.html', { 'idC':identificador, 'form':form })
 
-def equipo(request):
-    return render(request, 'chatbot/equipo.html')
-
-def acerca(request):
-    return render(request, 'chatbot/acerca.html')
-
 def contactanos(request):
     if request.method == 'GET':
         form = ContactForm()

@@ -12,8 +12,6 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.shortcuts import render
 from django.core.mail import send_mail
 
-#from dashboard.views import superuser_required
-
 from .forms import (
     ChangePasswordForm, LoginForm, SignupForm,
     logout_on_password_change)
@@ -81,9 +79,3 @@ def password_reset_confirm(request, uidb64=None, token=None):
         'token': token,
         'uidb64': uidb64}
     return PasswordResetConfirm.as_view(**kwargs)(request, **kwargs)
-
-
-
-
-
-
